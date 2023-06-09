@@ -23,4 +23,5 @@ public class PublicationComment {
 
     @Transient
     private Publication publication;
+    private Long userId;
 }

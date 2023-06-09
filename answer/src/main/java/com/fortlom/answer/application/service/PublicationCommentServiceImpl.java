@@ -14,6 +14,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import java.time.Instant;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -30,7 +32,12 @@ public class PublicationCommentServiceImpl implements PublicationCommentService 
     public List<PublicationComment> getAll() {
         List<PublicationComment>publicationComments=publicationCommentRepository.findAll();
         for(PublicationComment publicationComment:publicationComments){
-            Publication publication=restTemplate.getForObject("https://fortlom-content.herokuapp.com/api/v1/contentservice/publications/"+publicationComment.getPublicationid(),Publication.class);
+            // Publication publication=restTemplate.getForObject("https://fortlom-content.herokuapp.com/api/v1/contentservice/publications/"+publicationComment.getPublicationid(),Publication.class);
+            Publication publication = new Publication();
+            publication.setId(Long.valueOf(0+1));
+            publication.setDescription("Descripcion publicacion 00" + 0);
+            publication.setImage(false);
+            publication.setRegisterdate(Date.from(Instant.now()));
             publicationComment.setPublication(publication);
 
 
@@ -42,7 +49,12 @@ public class PublicationCommentServiceImpl implements PublicationCommentService 
     public Page<PublicationComment> getAll(Pageable pageable) {
         Page<PublicationComment>publicationComments=publicationCommentRepository.findAll(pageable);
         for(PublicationComment publicationComment:publicationComments){
-            Publication publication=restTemplate.getForObject("https://fortlom-content.herokuapp.com/api/v1/contentservice/publications/"+publicationComment.getPublicationid(),Publication.class);
+            //Publication publication=restTemplate.getForObject("https://fortlom-content.herokuapp.com/api/v1/contentservice/publications/"+publicationComment.getPublicationid(),Publication.class);
+            Publication publication = new Publication();
+            publication.setId(Long.valueOf(0+1));
+            publication.setDescription("Descripcion publicacion 00" + 0 + " Si");
+            publication.setImage(false);
+            publication.setRegisterdate(Date.from(Instant.now()));
             publicationComment.setPublication(publication);
 
 
@@ -53,18 +65,27 @@ public class PublicationCommentServiceImpl implements PublicationCommentService 
     @Override
     public PublicationComment getById(Long commentId) {
         PublicationComment publicationComment= publicationCommentRepository.findById(commentId).orElseThrow(() -> new ResourceNotFoundException(ENTITY, commentId));
-        Publication publication=restTemplate.getForObject("https://fortlom-content.herokuapp.com/api/v1/contentservice/publications/"+publicationComment.getPublicationid(),Publication.class);
+        //Publication publication=restTemplate.getForObject("https://fortlom-content.herokuapp.com/api/v1/contentservice/publications/"+publicationComment.getPublicationid(),Publication.class);
+        Publication publication = new Publication();
+        publication.setId(Long.valueOf(1));
+        publication.setDescription("Descripcion publicacion 00" + 0);
+        publication.setImage(false);
+        publication.setRegisterdate(Date.from(Instant.now()));
         publicationComment.setPublication(publication);
         return publicationComment;
     }
 
     @Override
     public PublicationComment create(Long userId, Long publicationId, PublicationComment request) {
-        boolean check1 = restTemplate.getForObject("https://fortlom-account.herokuapp.com/api/v1/userservice/artists/check/" + userId,boolean.class);
-        boolean check2 = restTemplate.getForObject("https://fortlom-account.herokuapp.com/api/v1/userservice/fanatics/check/" + userId,boolean.class);
-        boolean check3 = restTemplate.getForObject("https://fortlom-content.herokuapp.com/api/v1/contentservice/publications/check/" + publicationId,boolean.class);
+        //        boolean check1 = restTemplate.getForObject("https://fortlom-account.herokuapp.com/api/v1/userservice/artists/check/" + userId,boolean.class);
+//        boolean check2 = restTemplate.getForObject("https://fortlom-account.herokuapp.com/api/v1/userservice/fanatics/check/" + userId,boolean.class);
+//        boolean check3 = restTemplate.getForObject("https://fortlom-content.herokuapp.com/api/v1/contentservice/publications/check/" + publicationId,boolean.class);
+
+        boolean check1 = true;
+        boolean check2 = true;
+        boolean check3 = true;
         if((check1 || check2) && check3) {
-            request.setUserid(userId);
+            request.setUserId(userId);
             request.setPublicationid(publicationId);
             return publicationCommentRepository.save(request);
         }else {
@@ -81,9 +102,15 @@ public class PublicationCommentServiceImpl implements PublicationCommentService 
         if(check){
             List<PublicationComment>publicationComments=publicationCommentRepository.findByPublicationid(publicationId);
             for(PublicationComment publicationComment:publicationComments){
-                Publication publication=restTemplate.getForObject("https://fortlom-content.herokuapp.com/api/v1/contentservice/publications/"+publicationComment.getPublicationid(),Publication.class);
-                UserAccount userAccount=restTemplate.getForObject("https://fortlom-account.herokuapp.com/api/v1/userservice/users/"+publicationComment.getUserid(),UserAccount.class);
-                publicationComment.setUserAccount(userAccount);
+                //Publication publication=restTemplate.getForObject("https://fortlom-content.herokuapp.com/api/v1/contentservice/publications/"+publicationComment.getPublicationid(),Publication.class);
+                Publication publication = new Publication();
+                publication.setId(Long.valueOf(0));
+                publication.setDescription("Descripcion publicacion 00" + 0);
+                publication.setImage(false);
+                publication.setRegisterdate(Date.from(Instant.now()));
+
+                //UserAccount userAccount=restTemplate.getForObject("https://fortlom-account.herokuapp.com/api/v1/userservice/users/"+publicationComment.getUserid(),UserAccount.class);
+                publicationComment.setUserId(Long.valueOf(1));
                 publicationComment.setPublication(publication);
 
 

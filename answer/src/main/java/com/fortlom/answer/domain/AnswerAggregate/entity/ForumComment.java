@@ -22,4 +22,6 @@ public class ForumComment{
     private Long forumid;
     @Transient
     private Forum forum;
+    private Long userId;
+
 }
