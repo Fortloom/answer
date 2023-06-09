@@ -14,7 +14,7 @@ public interface PublicationAnswerService {
     Page<PublicationAnswer> getAll(Pageable pageable);
     PublicationAnswer getById(Long commentId);
     PublicationAnswer create(Long userId, Long publicationId, PublicationComment comment);
-    List<PublicationAnswer> getCommentByPublicationId(Long publicationId);
+    List<PublicationAnswer> getCommentByPublicationCommentId(Long publicationCommentId);
     ResponseEntity<?> delete(Long publicationanswerId);
 
 }

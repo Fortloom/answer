@@ -20,6 +20,7 @@ public class ForumAnswer {
 
     @Temporal(TemporalType.DATE)
     private Date registerdate;
-
+    private String answer;
     private Long userid;
+    private Long forumCommentId;
 }

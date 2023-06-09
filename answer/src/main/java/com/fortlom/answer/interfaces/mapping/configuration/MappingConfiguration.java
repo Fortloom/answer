@@ -12,10 +12,6 @@ public class MappingConfiguration {
         return new EnhancedModelMapper();
     }
     @Bean
-    public OpinionMapper OpinionMapper() {
-        return new OpinionMapper();
-    }
-    @Bean
     public PublicationCommentMapper PublicationCommentMapper() {
         return new PublicationCommentMapper();
     }

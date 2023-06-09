@@ -9,6 +9,6 @@ import java.util.List;
 @Repository
 public interface ForumAnswerRepository extends JpaRepository<ForumAnswer,Long>{
 
-    List<ForumAnswer> findByForumid(Long forumId);
+    List<ForumAnswer> findByForumCommentId(Long forumCommentId);
     List<ForumAnswer> findByUserid (Long UserId);
 }

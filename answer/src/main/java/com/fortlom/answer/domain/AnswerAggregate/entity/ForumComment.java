@@ -19,7 +19,7 @@ import java.util.List;
 public class ForumComment{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long forumid;
+    private Long forumCommentid;
     @Transient
     private Forum forum;
     private Long userId;

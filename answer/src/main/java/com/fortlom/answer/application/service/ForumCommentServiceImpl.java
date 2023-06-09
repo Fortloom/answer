@@ -82,9 +82,14 @@ public class ForumCommentServiceImpl implements ForumCommentService {
         boolean check1 = true;
         boolean check2 = true;
         boolean check3 = true;
+        Forum forum = new Forum();
+        forum.setId(Long.valueOf(1));
+        forum.setForumdescription("Description forum n° " + 0);
+        forum.setForumrules("Regla 1: awdawd\n Regla 2: awdasad\nRegla 3: awdasda2\n");
+        forum.setForumname("Foro de prueba");
         if((check1 || check2) && check3) {
             request.setUserId(userId);
-            request.setForumid(forumId);
+            request.setForum(forum);
             return forumcommentRepository.save(request);
         }else {
             throw  new ResourcePerzonalized("id inexistente");

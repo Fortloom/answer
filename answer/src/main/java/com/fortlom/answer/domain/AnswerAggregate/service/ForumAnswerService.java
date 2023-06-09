@@ -14,6 +14,6 @@ public interface ForumAnswerService {
     Page<ForumAnswer> getAll(Pageable pageable);
     ForumAnswer getById(Long forumanswerId);
     ForumAnswer create(Long userId, Long forumId, ForumComment forumcomment);
-    List<ForumComment> getForumCommentByForumId(Long forumId);
+    List<ForumAnswer> getForumAnswerByForumCommentId(Long forumcommentId);
     ResponseEntity<?> delete(Long forumanswerId);
 }
